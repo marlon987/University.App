@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="University.App.Views.Forms.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:control="clr-namespace:University.App.Controls"   
+             xmlns:i18n="clr-namespace:University.App.Helpers"
+             BackgroundColor="{DynamicResource Gray-400}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Login}">
+            <StackLayout Margin="20,32"
+                     Spacing="0"
+                     VerticalOptions="FillAndExpand">
+
+                <Image HeightRequest="200"
+                   Source="logo_complete"/>
+
+                <Grid RowSpacing="10"
+                  VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{i18n:Translate University}"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-900}"/>
+
+                    <Label Grid.Row="1" 
+                       Margin="0,8"
+                       HorizontalTextAlignment="Center"
+                       Text="{i18n:Translate LoginPageLoginMember}"
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-800}"/>
+
+                    <control:BorderlessEntry Grid.Row="2"
+                       Placeholder="{i18n:Translate UserName}"
+                       Keyboard="Email"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Email}">
+                        
+                        <!-- Bordea el email cuando no es correcto/>-->
+
+                        <control:BorderlessEntry.Triggers>
+                            <DataTrigger Binding="{Binding IsEmailValid}"
+                                         TargetType="control:BorderlessEntry"
+                                         Value="False">
+                                <Setter Property="BorderColor" Value="Red"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </DataTrigger>
+                        </control:BorderlessEntry.Triggers>
+
+
+                    </control:BorderlessEntry>
+
+                    <control:BorderlessEntry Grid.Row="3"
+                       Placeholder="{i18n:Translate Password}"
+                       IsPassword="True"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Password}"/>
+
+                    <Button Grid.Row="4"
+                        Margin="0,16"
+                        Text="Login"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding IsEnabled}"/>
+
+
+                </Grid>
+
+                <Label HeightRequest="46"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Text="{i18n:Translate LoginPageDontHaveAccount}"
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-900}"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <ActivityIndicator VerticalOptions="Center"
+                                   IsRunning="{Binding IsRunning}"/>
+
+                <Label HeightRequest="46"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="Copyright © 2021. All rights reserved." />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

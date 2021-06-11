@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="University.App.Views.Forms.PQRSPage"
+             xmlns:control="clr-namespace:University.App.Controls" 
+             xmlns:i18n="clr-namespace:University.App.Helpers"
+             BackgroundColor="{DynamicResource Gray-400}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding PQRS}">
+            <StackLayout Margin="20.32"
+                         Spacing="0"
+                         VerticalOptions="FillAndExpand">
+
+                <Grid RowSpacing="10"
+                      VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{i18n:Translate TypeOfRequest}"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource LabelStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <Picker Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"                            
+                            Title="{i18n:Translate SelectTypeOfRequest}"
+                            HorizontalTextAlignment="Center"
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding TypeRequests}"
+                            ItemDisplayBinding="{Binding Name}"/>
+
+                    <control:BorderlessEntry Grid.Row="2" 
+                           Placeholder="{i18n:Translate Name}"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <control:BorderlessEntry Grid.Row="3" 
+                           Placeholder="{i18n:Translate SurName}"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <control:BorderlessEntry Grid.Row="4" 
+                           Placeholder="{i18n:Translate Direction}"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <control:BorderlessEntry Grid.Row="5" 
+                           Placeholder="{i18n:Translate Telephone}"
+                           Keyboard="Telephone"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <control:BorderlessEntry Grid.Row="6" 
+                           Placeholder="E-Mail"
+                           Keyboard="Email"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <control:BorderlessEntry Grid.Row="7" 
+                           Placeholder="{i18n:Translate Message}"
+                           HorizontalTextAlignment="Center"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <Label Grid.Row="8"
+                           Text="{i18n:Translate RateOurService}"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource LabelStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <Picker Grid.Row="9"
+                            HorizontalOptions="FillAndExpand"                            
+                            Title="{i18n:Translate RateOurService}"
+                            HorizontalTextAlignment="Center"
+                            BackgroundColor="Transparent"
+                            ItemsSource="{Binding RateOurServices}"
+                            ItemDisplayBinding="{Binding Rate}"/>
+
+
+
+                    <Button Grid.Row="10"
+                            Margin="0,16"
+                            Text="{i18n:Translate Send}"
+                            Style="{StaticResource ButtonStyle}"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

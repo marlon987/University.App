@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="University.App.Views.Forms.RegisterPage"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:control="clr-namespace:University.App.Controls"
+             xmlns:i18n="clr-namespace:University.App.Helpers"
+             BackgroundColor="{DynamicResource Gray-400}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding Register}">
+            <StackLayout Margin="20,32"
+                     Spacing="0"
+                     VerticalOptions="FillAndExpand">
+
+                <Image HeightRequest="200"
+                   Source="logo_complete"/>
+
+                <Grid RowSpacing="15"
+                  VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{i18n:Translate University}"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"/>
+
+                    <Label Grid.Row="2" 
+                       Margin="0,8"
+                       HorizontalTextAlignment="Center"
+                       Text="Regístrese desde aqui."/>
+
+                    <control:BorderlessEntry Grid.Row="3"
+                       Placeholder="{i18n:Translate UserName}"
+                       Keyboard="Email"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Email}"/>
+
+                    <control:BorderlessEntry Grid.Row="4"
+                       Placeholder="{i18n:Translate Password}"
+                       IsPassword="True"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Password}"/>
+
+                    <control:BorderlessEntry Grid.Row="5"
+                       Placeholder="{i18n:Translate ConfirmPassword}"
+                       IsPassword="True"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       TextColor="{DynamicResource Gray-900}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding ConfirmPassword}"/>
+
+                    <Button Grid.Row="6"
+                        Margin="0,0"
+                        Text="{i18n:Translate Register}"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding RegisterCommand}"
+                        IsEnabled="{Binding IsEnabled}"/>
+
+                    <ImageButton Grid.Row="8"
+                        Source="ic_arrow_back"
+                                Command="{Binding BackCommand}"
+                        BackgroundColor="Transparent"
+                        IsEnabled="{Binding IsEnabled}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Pressed">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                            Value="0.6" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+
+
+                </Grid>
+
+                <ActivityIndicator VerticalOptions="Center"
+                                   IsRunning="{Binding IsRunning}"/>
+
+                <Label HeightRequest="46"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="Copyright © 2021. All rights reserved." />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="University.App.Views.Forms.AboutPage"
+             BackgroundColor="{DynamicResource Gray-400}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView BindingContext="{Binding About}">
+            <StackLayout Margin="20,32"
+                     Spacing="0"
+                     VerticalOptions="FillAndExpand">
+
+                <Grid RowSpacing="10"
+                  VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="About Us"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-900}"/>
+
+                    <Label Grid.Row="1" 
+                       Margin="0,8"
+                       HorizontalTextAlignment="Center"
+                       Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                       Style="{StaticResource LabelStyle}"
+                       TextColor="{DynamicResource Gray-800}"/>
+
+                    <Button Grid.Row="2"
+                        Margin="0,16"
+                        Text="Meet Us"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding NavigateSiteCommand}"/>
+
+                    <Button Grid.Row="3"
+                        Margin="0,16"
+                        Text="See More "
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding NavigateYTCommand}"/>
+
+                    <WebView Grid.Row="4"
+                             WidthRequest="1000"
+                             HeightRequest="1000"
+                             Source="https://dotnet.microsoft.com/apps/xamarin"/>
+
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

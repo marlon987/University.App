@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="University.App.Views.Forms.ProfilePage"
+             xmlns:i18n="clr-namespace:University.App.Helpers"
+             BackgroundColor="{DynamicResource Gray-400}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView BindingContext="{Binding Profile}">
+            <StackLayout Margin="20,32"
+                     Spacing="0"
+                     VerticalOptions="FillAndExpand">
+
+                <Image HeightRequest="250"
+                       Source="{Binding ImageSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer  Command="{Binding AddImageCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Grid RowSpacing="10"
+                      VerticalOptions="CenterAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding User.UserName}"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource LabelStyle}"
+                           TextColor="{DynamicResource Gray-900}"/>
+
+                    <Button Grid.Row="1"
+                             Margin="0,16"
+                             Text="{i18n:Translate EditProfile}"
+                             Style="{StaticResource ButtonStyle}"
+                             Command="{Binding EditProfileCommand}"/>
+
+                    <Button Grid.Row="2"
+                             Margin="0,9"
+                             Text="{i18n:Translate ChangePassword}"
+                             Style="{StaticResource ButtonStyle}"
+                             Command="{Binding ChangePasswordCommand}"/>
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
